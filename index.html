@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps Clone</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    /* Basic styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #map {
+      height: 100vh; /* Full screen height for the map */
+      width: 100%; /* Full screen width for the map */
+    }
+  </style>
+</head>
+<body>
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map with a default view (latitude, longitude, zoom level)
+    const map = L.map('map').setView([37.7749, -122.4194], 13); // Centered at San Francisco
+
+    // Add OpenStreetMap tiles as the base layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Add a marker with a popup
+    const marker = L.marker([37.7749, -122.4194]).addTo(map);
+    marker.bindPopup('Welcome to San Francisco!').openPopup();
+
+    // Add a circle overlay
+    L.circle([37.7749, -122.4194], {
+      color: 'blue',
+      fillColor: '#3388ff',
+      fillOpacity: 0.5,
+      radius: 500 // Radius in meters
+    }).addTo(map);
+  </script>
+</body>
+</html>
